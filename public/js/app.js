@@ -16,7 +16,7 @@ var GameBoard = React.createClass({
   },
 
   render: function render() {
-    return React.createElement(Websocket, { url: 'ws://https://desolate-bastion-1742.herokuapp.com/',
+    return React.createElement(Websocket, { url: 'ws://desolate-bastion-1742.herokuapp.com',
       onMessage: this.handleData });
   }
 });
