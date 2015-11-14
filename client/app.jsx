@@ -15,7 +15,7 @@ var React = require('react');
     
     render: function() {
     	return(
-      		<Websocket url='ws://localhost:3000/'
+      		<Websocket url='ws://https://desolate-bastion-1742.herokuapp.com/'
                  onMessage={this.handleData}/>
             )
     }
