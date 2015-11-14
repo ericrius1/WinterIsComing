@@ -22,6 +22,7 @@ wsServer.on('request', function(request) {
     console.log("CONNECTION ACCEPTED");
     connection.on('message', function(message) {
         console.log('message: ', message);
+        connection.send('shnuur')
     });
 });
 
