@@ -10,14 +10,15 @@ var GameBoard = React.createClass({
 
   handleData: function handleData(data) {
     // do something with the data
-    this.setState({
-      foo: bar
-    });
+    console.log("YAHAHAHAH");
   },
 
   render: function render() {
-    return React.createElement(Websocket, { url: 'ws://desolate-bastion-1742.herokuapp.com',
-      onMessage: this.handleData });
+    return(
+      // <Websocket url='ws://desolate-bastion-1742.herokuapp.com'
+      React.createElement(Websocket, { url: 'ws://localhost:5000',
+        onMessage: this.handleData })
+    );
   }
 });
 

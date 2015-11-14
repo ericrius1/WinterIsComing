@@ -8,14 +8,13 @@ var React = require('react');
   
     handleData: function(data) {
        // do something with the data 
-       this.setState({
-          foo: bar
-       });
+      console.log("GOT A MESSAGE")
     },
     
     render: function() {
     	return(
-      		<Websocket url='ws://desolate-bastion-1742.herokuapp.com'
+          <Websocket url='ws://desolate-bastion-1742.herokuapp.com'
+      		// <Websocket url='ws://localhost:5000'
                  onMessage={this.handleData}/>
             )
     }
