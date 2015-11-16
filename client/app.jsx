@@ -51,9 +51,9 @@ var GameBoard = React.createClass({
 var User = React.createClass({
 	render: function() {
 		return (
-		<div>
-			<h2> {this.props.username} </h2>
-			<h2> {this.props.score} </h2>
+		<div className = "entry">
+			<div className="username"> {this.props.username} </div>
+			<div className="score" > {this.props.score} </div>
 		</div>
 		);
 	}

@@ -59,17 +59,17 @@ var User = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			null,
+			{ className: 'entry' },
 			React.createElement(
-				'h2',
-				null,
+				'div',
+				{ className: 'username' },
 				' ',
 				this.props.username,
 				' '
 			),
 			React.createElement(
-				'h2',
-				null,
+				'div',
+				{ className: 'score' },
 				' ',
 				this.props.score,
 				' '
