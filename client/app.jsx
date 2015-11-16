@@ -2,27 +2,22 @@
 
 var React = require('react');
 
-// tutorial1.js
-
-var data = [
-  {id: 1, author: "Pete Hunt", text: "This is one comment"},
-  {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
-];
-
-var CommentList = React.createClass({
+var UserList = React.createClass({
 render: function(){
-	var commentNodes = this.props.data.users.map(function(user) {
+	var users = this.props.data.users.map(function(user) {
+
+		console.log('user', user)
 		return (
-			<Comment author = {user.username} key = {user.id}></Comment>
+			<User username = {user.username} score = {user.score} key = {user.id}></User>
 		)
 	});
 	return (
-		<div>{commentNodes}</div>
+		<div>{users}</div>
 	)
   }
 });
 
-var CommentBox = React.createClass({
+var GameBoard = React.createClass({
    loadDataFromServer: function(data) {
 		$.ajax({
 			url: this.props.url,
@@ -47,21 +42,24 @@ var CommentBox = React.createClass({
 
     return (
       <div className="commentBox">
-        <CommentList data ={this.state.data}/>
+        <UserList data ={this.state.data}/>
       </div>
     );
   }
 });
 
-var Comment = React.createClass({
+var User = React.createClass({
 	render: function() {
 		return (
-			<h2> {this.props.author} </h2>
+		<div>
+			<h2> {this.props.username} </h2>
+			<h2> {this.props.score} </h2>
+		</div>
 		);
 	}
 })
 
 React.render(
-  <CommentBox url = "/users" />,
+  <GameBoard url = "/users" />,
   document.getElementById('app')
 );

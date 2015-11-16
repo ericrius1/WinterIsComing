@@ -3,27 +3,25 @@
 
 var React = require('react');
 
-// tutorial1.js
-
-var data = [{ id: 1, author: "Pete Hunt", text: "This is one comment" }, { id: 2, author: "Jordan Walke", text: "This is *another* comment" }];
-
-var CommentList = React.createClass({
-	displayName: 'CommentList',
+var UserList = React.createClass({
+	displayName: 'UserList',
 
 	render: function render() {
-		var commentNodes = this.props.data.users.map(function (user) {
-			return React.createElement(Comment, { author: user.username, key: user.id });
+		var users = this.props.data.users.map(function (user) {
+
+			console.log('user', user);
+			return React.createElement(User, { username: user.username, score: user.score, key: user.id });
 		});
 		return React.createElement(
 			'div',
 			null,
-			commentNodes
+			users
 		);
 	}
 });
 
-var CommentBox = React.createClass({
-	displayName: 'CommentBox',
+var GameBoard = React.createClass({
+	displayName: 'GameBoard',
 
 	loadDataFromServer: function loadDataFromServer(data) {
 		$.ajax({
@@ -50,26 +48,37 @@ var CommentBox = React.createClass({
 		return React.createElement(
 			'div',
 			{ className: 'commentBox' },
-			React.createElement(CommentList, { data: this.state.data })
+			React.createElement(UserList, { data: this.state.data })
 		);
 	}
 });
 
-var Comment = React.createClass({
-	displayName: 'Comment',
+var User = React.createClass({
+	displayName: 'User',
 
 	render: function render() {
 		return React.createElement(
-			'h2',
+			'div',
 			null,
-			' ',
-			this.props.author,
-			' '
+			React.createElement(
+				'h2',
+				null,
+				' ',
+				this.props.username,
+				' '
+			),
+			React.createElement(
+				'h2',
+				null,
+				' ',
+				this.props.score,
+				' '
+			)
 		);
 	}
 });
 
-React.render(React.createElement(CommentBox, { url: '/users' }), document.getElementById('app'));
+React.render(React.createElement(GameBoard, { url: '/users' }), document.getElementById('app'));
 
 },{"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
