@@ -9,6 +9,7 @@ var UserList = React.createClass({
 
 	render: function render() {
 		var sortedUsers = _.sortBy(this.props.data.users, function (users) {
+			//Show higher scorers at top of board
 			return 1 - users.score;
 		});
 		var users = sortedUsers.map(function (user) {

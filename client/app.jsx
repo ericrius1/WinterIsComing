@@ -6,6 +6,7 @@ var _ = require('underscore')
 var UserList = React.createClass({
 render: function(){
 	var sortedUsers = _.sortBy(this.props.data.users, function(users){
+		//Show higher scorers at top of board
 		return 1 - users.score;
 	});
 	var users = sortedUsers.map(function(user) {
