@@ -2,7 +2,6 @@
 
 var React = require('react');
 
-var Websocket = require('react-websocket');
 // tutorial1.js
 
 var data = [
@@ -12,10 +11,9 @@ var data = [
 
 var CommentList = React.createClass({
 render: function(){
-	var commentNodes = this.props.data.map(function(comment) {
-		console.log("comment" , comment)
+	var commentNodes = this.props.data.users.map(function(user) {
 		return (
-			<Comment author = {comment.author} key = {comment.id}></Comment>
+			<Comment author = {user.name} key = {user.id}></Comment>
 		)
 	});
 	return (
@@ -25,10 +23,32 @@ render: function(){
 });
 
 var CommentBox = React.createClass({
+   loadDataFromServer: function(data) {
+		$.ajax({
+			url: this.props.url,
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				console.log('data', data)
+				this.setState({data: data});
+			}.bind(this),
+			error: function(xhr, status, err) {
+				console.error(this.props.url, status, err.toString());
+			}.bind(this)
+		});
+  },
+  getInitialState: function() {
+  	return {data: {users: []}};
+  },
+  componentDidMount: function() {
+  	this.loadDataFromServer();
+  	setInterval(this.loadDataFromServer, 2000);
+  },
   render: function() {
+
     return (
       <div className="commentBox">
-        <CommentList data = {this.props.data} />
+        <CommentList data ={this.state.data}/>
       </div>
     );
   }
@@ -43,6 +63,6 @@ var Comment = React.createClass({
 })
 
 React.render(
-  <CommentBox data = {data}/>,
+  <CommentBox url = "/scores" />,
   document.getElementById('app')
 );

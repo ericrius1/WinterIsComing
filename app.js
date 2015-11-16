@@ -27,6 +27,10 @@ wsServer.on('request', function(request) {
     });
 });
 
+app.get('/scores', function(req, res) {
+    res.send({users: [{id: 1, name: "eric", score: 10}]});
+});
+
 
 
 /* Configuration */
