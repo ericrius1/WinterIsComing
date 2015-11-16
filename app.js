@@ -20,6 +20,7 @@ wsServer.on('request', function(request) {
     console.log("SOMEONE JOINED");
     var connection = request.accept(null, request.origin);
     console.log("CONNECTION ACCEPTED");
+    connection.send("SABABADABADUDE");
     connection.on('message', function(message) {
         console.log('message: ', message);
         connection.send('shnuur')

@@ -4,25 +4,53 @@
 var React = require('react');
 
 var Websocket = require('react-websocket');
+// tutorial1.js
 
-var GameBoard = React.createClass({
-  displayName: 'GameBoard',
+var data = [{ id: 1, author: "Pete Hunt", text: "This is one comment" }, { id: 2, author: "Jordan Walke", text: "This is *another* comment" }];
 
-  handleData: function handleData(data) {
-    // do something with the data
-    console.log("YAHAHAHAH");
-  },
+var CommentList = React.createClass({
+	displayName: 'CommentList',
 
-  render: function render() {
-    return(
-      // <Websocket url='ws://desolate-bastion-1742.herokuapp.com'
-      React.createElement(Websocket, { url: 'ws://localhost:5000',
-        onMessage: this.handleData })
-    );
-  }
+	render: function render() {
+		var commentNodes = this.props.data.map(function (comment) {
+			console.log("comment", comment);
+			return React.createElement(Comment, { author: comment.author, key: comment.id });
+		});
+		return React.createElement(
+			'div',
+			null,
+			commentNodes
+		);
+	}
 });
 
-React.render(React.createElement(GameBoard, null), document.getElementById('app'));
+var CommentBox = React.createClass({
+	displayName: 'CommentBox',
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			{ className: 'commentBox' },
+			React.createElement(CommentList, { data: this.props.data })
+		);
+	}
+});
+
+var Comment = React.createClass({
+	displayName: 'Comment',
+
+	render: function render() {
+		return React.createElement(
+			'h2',
+			null,
+			' ',
+			this.props.author,
+			' '
+		);
+	}
+});
+
+React.render(React.createElement(CommentBox, { data: data }), document.getElementById('app'));
 
 },{"react":159,"react-websocket":3}],2:[function(require,module,exports){
 // shim for using process in browser
