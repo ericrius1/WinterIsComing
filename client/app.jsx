@@ -1,10 +1,14 @@
 'use strict';
 
 var React = require('react');
+var _ = require('underscore')
 
 var UserList = React.createClass({
 render: function(){
-	var users = this.props.data.users.map(function(user) {
+	var sortedUsers = _.sortBy(this.props.data.users, function(users){
+		return 1 - users.score;
+	});
+	var users = sortedUsers.map(function(user) {
 
 		console.log('user', user)
 		return (
