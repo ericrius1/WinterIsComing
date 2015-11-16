@@ -41,7 +41,7 @@ var GameBoard = React.createClass({
   },
   componentDidMount: function() {
   	this.loadDataFromServer();
-  	setInterval(this.loadDataFromServer, 10000);
+  	setInterval(this.loadDataFromServer, 1000);
   },
   render: function() {
 
