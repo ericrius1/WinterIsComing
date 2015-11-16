@@ -12,7 +12,7 @@ var CommentList = React.createClass({
 
 	render: function render() {
 		var commentNodes = this.props.data.users.map(function (user) {
-			return React.createElement(Comment, { author: user.name, key: user.id });
+			return React.createElement(Comment, { author: user.username, key: user.id });
 		});
 		return React.createElement(
 			'div',
@@ -31,7 +31,6 @@ var CommentBox = React.createClass({
 			dataType: 'json',
 			cache: false,
 			success: (function (data) {
-				console.log('YABABBABA', data);
 				this.setState({ data: data });
 			}).bind(this),
 			error: (function (xhr, status, err) {
@@ -70,7 +69,7 @@ var Comment = React.createClass({
 	}
 });
 
-React.render(React.createElement(CommentBox, { url: '/scores' }), document.getElementById('app'));
+React.render(React.createElement(CommentBox, { url: '/users' }), document.getElementById('app'));
 
 },{"react":157}],2:[function(require,module,exports){
 // shim for using process in browser

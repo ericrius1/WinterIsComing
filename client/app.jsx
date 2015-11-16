@@ -13,7 +13,7 @@ var CommentList = React.createClass({
 render: function(){
 	var commentNodes = this.props.data.users.map(function(user) {
 		return (
-			<Comment author = {user.name} key = {user.id}></Comment>
+			<Comment author = {user.username} key = {user.id}></Comment>
 		)
 	});
 	return (
@@ -29,7 +29,6 @@ var CommentBox = React.createClass({
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				console.log('YABABBABA', data)
 				this.setState({data: data});
 			}.bind(this),
 			error: function(xhr, status, err) {
@@ -63,6 +62,6 @@ var Comment = React.createClass({
 })
 
 React.render(
-  <CommentBox url = "/scores" />,
+  <CommentBox url = "/users" />,
   document.getElementById('app')
 );

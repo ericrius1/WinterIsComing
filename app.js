@@ -16,19 +16,21 @@ var wsServer = new WebSocketServer({
     httpServer: server
 });
 
+var users = [];
+
 wsServer.on('request', function(request) {
     console.log("SOMEONE JOINED");
     var connection = request.accept(null, request.origin);
-    console.log("CONNECTION ACCEPTED");
-    connection.send("SABABADABADUDE");
-    connection.on('message', function(message) {
-        console.log('message: ', message);
-        connection.send('shnuur')
+    connection.on('message', function(data) {
+        console.log('data', data);
+        var userData= JSON.parse(data.utf8Data);
+        users.push({id: userData.id, username: userData.username, score: userData.score})
+        console.log('users', users)
     });
 });
 
-app.get('/scores', function(req, res) {
-    res.send({users: [{id: 1, name: "eric", score: 10}]});
+app.get('/users', function(req, res) {
+    res.send({users: users});
 });
 
 
